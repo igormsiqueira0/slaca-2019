@@ -1,0 +1,86 @@
+@use 'sass:math';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+body {
+	display: flex;
+}
+
+h1,
+h2,
+p,
+a,
+span {
+	font-family: 'Roboto';
+}
+
+.container {
+	width: calc(95%);
+	margin-inline: auto;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 13px 13px #e7e7e7;
+	border: solid 3px transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 13px 13px #bfbfbf;
+	border: solid 3px transparent;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-button {
+	display: none;
+}
+
+@function rem($size) {
+	@return math.div($size, 16) + rem;
+}
+
+@mixin device($device) {
+	@if $device == xs {
+		@media (max-width: 300px) {
+			@content;
+		}
+	} @else if $device == sm {
+		@media (max-width: 600px) {
+			@content;
+		}
+	} @else if $device == md {
+		@media (max-width: 900px) {
+			@content;
+		}
+	} @else if $device == lg {
+		@media (max-width: 1000px) {
+			@content;
+		}
+	} @else if $device == xl {
+		@media (max-width: 1140px) {
+			@content;
+		}
+	}
+}
+
+.content {
+	width: 100%;
+	margin-inline-start: 220px;
+	@include device(sm) {
+		margin-inline-start: 115px;
+	}
+}

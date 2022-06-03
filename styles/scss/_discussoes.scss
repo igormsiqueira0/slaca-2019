@@ -1,0 +1,481 @@
+@use 'sass:math';
+
+.discussoes {
+	border: 1px solid #ececec;
+	border-radius: 3px;
+	margin-block-end: 50px;
+	padding-block-end: 15px;
+	h2 {
+		padding: 10px 15px;
+		background: #fdf1eb;
+		border-bottom: 1px solid #ececec;
+		font-size: rem(20);
+		color: #4e4e4e;
+		text-transform: none;
+		text-align: left;
+	}
+	// intro tópicos / criar tópico ----------
+	.criar-topico {
+		border-bottom: 1px solid #e7e7e7;
+		margin-block-end: 30px;
+		position: relative;
+		padding-block-end: 30px;
+		margin-inline: 16px;
+		&.enviado {
+			display: none;
+		}
+		&.editing {
+			display: none;
+		}
+		h3 {
+			font-family: 'Roboto';
+			color: #ed7839;
+			font-size: rem(18);
+			font-weight: 700;
+			text-align: center;
+			margin-block-start: 15px;
+			margin-block-end: 30px;
+		}
+		.image-list {
+			display: flex;
+			gap: 50px;
+			justify-content: center;
+			margin-block-end: 35px;
+			@include device(sm) {
+				gap: 20px;
+			}
+		}
+		p {
+			font-family: 'Quicksand';
+			font-size: rem(14);
+			font-weight: 400;
+			color: #595959;
+			margin-inline: auto;
+			text-align: center;
+			max-width: 80ch;
+			line-height: math.div(19, 14);
+		}
+		button {
+			background: linear-gradient(180deg, #feb254 0%, #f0813d 100%);
+			box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12),
+				0px 2px 2px rgba(0, 0, 0, 0.24);
+			border-radius: 4px;
+			padding: 7px 14px 7px 37px;
+
+			font-family: 'Quicksand';
+			font-weight: 700;
+			font-size: 15px;
+			line-height: math.div(16, 15);
+			text-align: center;
+			color: #ffffff;
+			border: none;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+
+			position: absolute;
+			bottom: -15px;
+			left: 50%;
+			transform: translate(-50%, 0);
+			&::before {
+				content: '';
+				display: inline-block;
+				background: url('../../assets/criar.svg') no-repeat center center;
+				height: 17px;
+				width: 17px;
+				position: absolute;
+				left: 15px;
+			}
+		}
+	}
+	.criando-topico {
+		display: none;
+		&.editing {
+			display: block;
+			margin-inline: 15px;
+			padding-block-end: 15px;
+			border-bottom: 1px solid #e7e7e7;
+			margin-block-end: 30px;
+			p {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 400;
+				font-size: rem(14);
+				line-height: math.div(18, 14);
+				text-align: center;
+				color: #5c5c5c;
+				margin-block: 15px 20px;
+			}
+			label {
+				display: block;
+				font-family: 'Roboto';
+				font-style: normal;
+				font-weight: 700;
+				font-size: rem(16);
+				line-height: math.div(19, 16);
+				color: #ed7839;
+			}
+			input,
+			textarea {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 400;
+				font-size: rem(14);
+				line-height: math.div(18, 14);
+				color: #4d4d4d;
+				padding: 10px 23px;
+				background: #ffffff;
+				border: 1px solid #cccccc;
+				border-radius: 3px;
+				width: 100% !important;
+				&::placeholder {
+					color: #4d4d4d;
+				}
+			}
+			input {
+				margin-block-end: 10px;
+			}
+			textarea {
+				resize: vertical;
+				min-height: 80px;
+				height: 80px;
+				margin-block-end: 0;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			&.enviado {
+				display: none;
+			}
+		}
+		&--controls {
+			width: 100%;
+			height: 30px;
+			background-color: #eaf1f2;
+			border: 1px solid #cccccc;
+			border-top: none;
+			border-radius: 0px 0px 4px 4px;
+			display: flex;
+			justify-content: space-between;
+			overflow: hidden;
+			margin-block-start: -4px;
+			.text-controls {
+				display: flex;
+				gap: 30px;
+				align-items: center;
+				padding-inline-start: 30px;
+			}
+			button {
+				border: none;
+			}
+			.btn-bold {
+				background: url('../../assets/bold.svg') no-repeat center center;
+				width: 12px;
+				height: 12px;
+			}
+			.btn-italic {
+				background: url('../../assets/italic.svg') no-repeat center center;
+				width: 12px;
+				height: 12px;
+			}
+			&--enviar {
+				display: inline-block;
+				height: 100%;
+				width: 25%;
+				background: linear-gradient(180deg, #feb154 0%, #f1833e 100%);
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 700;
+				font-size: rem(15);
+				line-height: math.div(16, 15);
+				text-align: center;
+				color: #ffffff;
+				cursor: pointer;
+			}
+		}
+	}
+	.topico-sucesso {
+		position: relative;
+		display: none;
+		margin-block-end: 28px;
+		margin-inline: 15px;
+		margin-block-start: 15px;
+		border-bottom: 1px solid #e7e7e7;
+		&.enviado {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		h3 {
+			font-family: 'Roboto';
+			font-style: normal;
+			font-weight: 700;
+			font-size: rem(18);
+			line-height: math.div(21, 18);
+			text-align: center;
+			color: #ed7839;
+			margin-block-end: 18px;
+		}
+		p {
+			font-family: 'Quicksand';
+			font-style: normal;
+			font-weight: 400;
+			font-size: rem(14);
+			line-height: math.div(19, 14);
+			text-align: center;
+			color: #595959;
+			margin-block-end: 29px;
+		}
+		a {
+			display: inline-block;
+			font-family: 'Quicksand';
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 137.5%;
+			text-decoration-line: underline;
+			color: #f48f44;
+			margin-block-end: 65px;
+		}
+		button {
+			background: linear-gradient(180deg, #feb254 0%, #f0813d 100%);
+			box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12),
+				0px 2px 2px rgba(0, 0, 0, 0.24);
+			border-radius: 4px;
+			padding: 7px 14px;
+
+			font-family: 'Quicksand';
+			font-weight: 700;
+			font-size: 15px;
+			line-height: math.div(16, 15);
+			text-align: center;
+			color: #ffffff;
+			border: none;
+			cursor: pointer;
+
+			position: absolute;
+			bottom: -15px;
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
+	}
+
+	// listagem de tópicos -------------------
+	.topicos-lista {
+		list-style: none;
+		margin-inline: 15px;
+		display: flex;
+		flex-direction: column;
+		gap: 17px;
+		.topico {
+			background: #ffffff;
+			border: 1px solid #e7e7e7;
+			box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.12);
+			border-radius: 4px;
+			padding: 17px 24px 0 24px;
+			position: relative;
+			min-height: 148px;
+			&--main {
+				cursor: pointer;
+			}
+			.aguardando-feedback {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				gap: 8px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				h3 {
+					font-family: 'Quicksand';
+					font-style: normal;
+					font-weight: 700;
+					font-size: rem(16);
+					line-height: math.div(20, 16);
+					color: #707070;
+				}
+				a {
+					font-family: 'Segoe UI';
+					font-style: normal;
+					font-weight: 400;
+					font-size: rem(14);
+					line-height: math.div(19, 14);
+					text-decoration-line: underline;
+					color: #ed7839;
+				}
+			}
+			&.waiting {
+				display: none;
+				&.enviado {
+					display: block;
+					border: 1px solid #e7e7e7;
+					border-radius: 4px;
+					padding: 17px 24px;
+					& .topico-blur {
+						filter: blur(8px);
+					}
+				}
+			}
+			h3 {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 700;
+				font-size: rem(16);
+				line-height: math.div(20, 16);
+				color: #ed7839;
+			}
+			&--usuario {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 500;
+				font-size: rem(12);
+				line-height: math.div(15, 12);
+				color: #5c5c5c;
+				margin-block-end: 10px;
+				margin-block-start: 3px;
+			}
+			&--pergunta {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 400;
+				font-size: rem(14);
+				line-height: math.div(18, 14);
+				color: #4d4d4d;
+			}
+			&--opcoes {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+				margin-block-start: 10px;
+				margin-block-end: 20px;
+				&--btn {
+					cursor: pointer;
+					&--like {
+						background: #ed7839 url('../../assets/heart.svg') no-repeat center
+							center;
+						width: 27px;
+						height: 19px;
+						box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12),
+							0px 2px 2px rgba(0, 0, 0, 0.24);
+						border-radius: 2px;
+						border: none;
+					}
+					&--more {
+						background-color: #ed7839;
+						border-radius: 50%;
+						height: 4px;
+						width: 4px;
+						border: none;
+						position: relative;
+						&::before {
+							content: '';
+							width: 4px;
+							height: 4px;
+							background-color: #ed7839;
+							border-radius: 50%;
+							position: absolute;
+							top: -6px;
+							left: 0;
+						}
+						&::after {
+							content: '';
+							width: 4px;
+							height: 4px;
+							background-color: #ed7839;
+							border-radius: 50%;
+							position: absolute;
+							bottom: -6px;
+							left: 0;
+						}
+					}
+				}
+			}
+			&--likes,
+			&--num-respostas {
+				font-family: 'Segoe UI';
+				font-style: normal;
+				font-weight: 350;
+				font-size: rem(14);
+				line-height: math.div(19, 14);
+				color: #757575;
+			}
+		}
+	}
+
+	.respostas-lista {
+		list-style: none;
+		width: calc(100% + 48px);
+		margin-inline-start: -24px;
+		display: none;
+		&.active {
+			display: block;
+			animation: showRespostas 0.2s forwards;
+		}
+		li {
+			border-bottom: 1px solid #e7e7e7;
+			padding-inline: 24px;
+			padding-block: 18px;
+			min-height: 131px;
+			width: 100%;
+			position: relative;
+			&:nth-child(1) {
+				border-top: 1px solid #e7e7e7;
+			}
+			&:nth-last-child(n) {
+				border-radius: 0px 0px 4px 4px;
+			}
+			&.autoridade {
+				background: #f8f8f8;
+			}
+			span {
+				position: absolute;
+				right: 90px;
+				top: 18px;
+				color: #ed7839;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				&::after {
+					content: '';
+					position: absolute;
+					right: -40px;
+					display: inline-block;
+					background: url('../../assets/iconLaranja.svg') no-repeat center
+						center;
+					width: 21px;
+					height: 21px;
+				}
+			}
+			.resposta-usuario {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 700;
+				font-size: rem(12);
+				line-height: math.div(15, 12);
+				color: #5c5c5c;
+				margin-block-end: 10px;
+			}
+			.resposta-txt {
+				font-family: 'Quicksand';
+				font-style: normal;
+				font-weight: 400;
+				font-size: rem(14);
+				line-height: math.div(18, 14);
+				color: #4d4d4d;
+				max-width: 95%;
+			}
+		}
+	}
+}
+
+@keyframes showRespostas {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -20px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}

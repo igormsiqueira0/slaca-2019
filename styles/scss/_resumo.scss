@@ -1,0 +1,45 @@
+@use 'sass:math';
+
+.resumo {
+	border: 1px solid #ececec;
+	border-radius: 3px;
+	margin-block-end: 30px;
+	cursor: pointer;
+	transition: all 0.3s;
+	h2 {
+		padding: 10px 15px;
+		background: #fdf1eb;
+		border-bottom: 1px solid #ececec;
+		font-size: rem(20);
+		color: #4e4e4e;
+		text-transform: none;
+		text-align: left;
+	}
+	p {
+		font-family: 'Quicksand';
+		padding: 15px;
+		font-size: rem(14);
+		color: #5c5c5c;
+		line-height: math.div(23, 14);
+		letter-spacing: 0.02rem;
+	}
+	[data-role='see-more'] {
+		color: #ed7839;
+		font-weight: 700;
+	}
+	[data-role='more-content'] {
+		display: none;
+	}
+	[data-role='more-content'].expanded {
+		display: inline;
+		font-family: 'Quicksand';
+		font-size: rem(14);
+		color: #5c5c5c;
+		line-height: math.div(23, 14);
+		letter-spacing: 0.02rem;
+	}
+	[data-role='see-more'].expanded,
+	[data-role='dots'].expanded {
+		display: none;
+	}
+}
